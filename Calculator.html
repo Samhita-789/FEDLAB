@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+  body {
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  #calculator {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  #display {
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: right;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div id="calculator">
+  <div id="display"></div>
+  <div class="row">
+    <div class="button">(</div>
+    <div class="button">CE</div>
+    <div class="button">)</div>
+    <div class="button">C</div>
+  </div>
+  <div class="row">
+    <div class="button">1</div>
+    <div class="button">2</div>
+    <div class="button">3</div>
+    <div class="button">+</div>
+  </div>
+  <div class="row">
+    <div class="button">4</div>
+    <div class="button">5</div>
+    <div class="button">6</div>
+    <div class="button">-</div>
+  </div>
+  <div class="row">
+    <div class="button">7</div>
+    <div class="button">8</div>
+    <div class="button">9</div>
+    <div class="button">*</div>
+  </div>
+  <div class="row">
+    <div class="button">.</div>
+    <div class="button">0</div>
+    <div class="button">/</div>
+    <div class="button">=</div>
+  </div>
+</div>
+<script>
+  const display = document.getElementById("display");
+  const buttons = document.querySelectorAll(".button");
+  let expression = "";
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      if (button.textContent === "=") {
+        try {
+          const result = eval(expression);
+          display.textContent = result;
+          expression = result.toString();
+        } catch (error) {
+          display.textContent = "Error";
+        }
+      } else if (button.textContent === "CE") {
+        expression = expression.slice(0, -1);
+        display.textContent = expression;
+      } else if (button.textContent === "C") {
+        expression = "";
+        display.textContent = "";
+      } else {
+        expression += button.textContent;
+        display.textContent = expression;
+      }
+    });
+  });
+</script>
+</body>
+</html>
