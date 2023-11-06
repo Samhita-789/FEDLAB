@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map, Filter, and Reduce Example</title>
+</head>
+<body>
+  <script>
+    // Sample collection of products
+    const products = [
+      { name: "Product A", price: 10, category: "Category 1" },
+      { name: "Product B", price: 20, category: "Category 2" },
+      { name: "Product C", price: 30, category: "Category 1" },
+      { name: "Product D", price: 40, category: "Category 2" },
+      { name: "Product E", price: 50, category: "Category 3" },
+    ];
+
+    // Using map() to create an array of product names
+    const productNames = products.map(product => product.name);
+    console.log("Product Names:", productNames);
+
+    // Using filter() to get products in Category 2
+    const category2Products = products.filter(product => product.category === "Category 2");
+    console.log("Category 2 Products:", category2Products);
+
+    // Using reduce() to calculate the total price of all products
+    const totalPrice = products.reduce((total, product) => total + product.price, 0);
+    console.log("Total Price:", totalPrice);
+  </script>
+</body>
+</html>
